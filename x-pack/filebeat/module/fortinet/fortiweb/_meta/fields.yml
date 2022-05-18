@@ -1,0 +1,344 @@
+- name: fortinet
+  type: group
+  description: >
+    Fields from fortinet FortiOS
+  fields:
+    - name: fortiweb
+      type: group
+      release: beta
+      description: >
+        Module for parsing Fortiweb syslog.
+      fields:
+        # - name: a
+        #   type: keyword
+        #   description: >
+
+        - name: action
+          type: keyword
+          description: >
+
+        - name: attack_type
+          type: keyword
+          description: >
+
+        - name: backend_service
+          type: keyword
+          description: >
+
+        - name: bot_info
+          type: keyword
+          description: >
+
+        - name: cipher_suite
+          type: keyword
+          description: >
+
+        - name: client_level
+          type: keyword
+          description: >
+
+        - name: content_switch_name
+          type: keyword
+          description: >
+
+        # - name: cvcv
+        #   type: keyword
+        #   description: >
+
+        - name: date
+          type: keyword
+          description: >
+
+        - name: dev_id
+          type: keyword
+          description: >
+
+        - name: dst
+          type: keyword
+          description: >
+
+        - name: dst_port
+          type: keyword
+          description: >
+
+        # - name: es
+        #   type: keyword
+        #   description: >
+
+        - name: false_positive_mitigation
+          type: keyword
+          description: >
+
+        - name: history_threat_weight
+          type: keyword
+          description: >
+
+        # - name: href
+        #   type: keyword
+        #   description: >
+
+        - name: http_agent
+          type: keyword
+          description: >
+
+        - name: http_host
+          type: keyword
+          description: >
+
+        - name: http_method
+          type: keyword
+          description: >
+
+        - name: http_refer
+          type: keyword
+          description: >
+
+        - name: http_request_bytes
+          type: keyword
+          description: >
+
+        - name: http_request_time
+          type: keyword
+          description: >
+
+        - name: http_response_bytes
+          type: keyword
+          description: >
+
+        - name: http_response_time
+          type: keyword
+          description: >
+
+        - name: http_retcode
+          type: keyword
+          description: >
+
+        - name: http_session_id
+          type: keyword
+          description: >
+
+        - name: http_url
+          type: keyword
+          description: >
+
+        - name: http_version
+          type: keyword
+          description: >
+
+        - name: id
+          type: keyword
+          description: >
+
+        - name: key
+          type: keyword
+          description: >
+
+        - name: main_type
+          type: keyword
+          description: >
+
+        - name: matched_field
+          type: keyword
+          description: >
+
+        - name: matched_pattern
+          type: keyword
+          description: >
+
+        - name: method
+          type: keyword
+          description: >
+
+        - name: ml_allow_method
+          type: keyword
+          description: >
+
+        - name: ml_arg_dbid
+          type: keyword
+          description: >
+
+        - name: ml_domain_index
+          type: keyword
+          description: >
+
+        - name: ml_log_arglen
+          type: keyword
+          description: >
+
+        - name: ml_log_hmm_probability
+          type: keyword
+          description: >
+
+        - name: ml_log_sample_arglen_mean
+          type: keyword
+          description: >
+
+        - name: ml_log_sample_prob_mean
+          type: keyword
+          description: >
+
+        - name: ml_svm_accuracy
+          type: keyword
+          description: >
+
+        - name: ml_svm_log_main_types
+          type: keyword
+          description: >
+
+        - name: ml_svm_log_match_types
+          type: keyword
+          description: >
+
+        - name: ml_url_dbid
+          type: keyword
+          description: >
+
+        - name: monitor_status
+          type: keyword
+          description: >
+
+        - name: msg
+          type: keyword
+          description: >
+
+        - name: msg_id
+          type: keyword
+          description: >
+
+        - name: name
+          type: keyword
+          description: >
+
+        - name: onerror
+          type: keyword
+          description: >
+
+        - name: onload
+          type: keyword
+          description: >
+
+        - name: onmouseover
+          type: keyword
+          description: >
+
+        - name: operand
+          type: keyword
+          description: >
+
+        - name: original_src
+          type: keyword
+          description: >
+
+        - name: original_srccountry
+          type: keyword
+          description: >
+
+        - name: policy
+          type: keyword
+          description: >
+
+        - name: proto
+          type: keyword
+          description: >
+
+        - name: qss
+          type: keyword
+          description: >
+
+        - name: reason
+          type: keyword
+          description: >
+
+        - name: server_pool_name
+          type: keyword
+          description: >
+
+        - name: service
+          type: keyword
+          description: >
+
+        - name: severity_level
+          type: keyword
+          description: >
+
+        - name: signature_cve_id
+          type: keyword
+          description: >
+
+        - name: signature_id
+          type: keyword
+          description: >
+
+        - name: signature_subclass
+          type: keyword
+          description: >
+
+        - name: smf
+          type: keyword
+          description: >
+
+        - name: src
+          type: keyword
+          description: >
+
+        - name: src_port
+          type: keyword
+          description: >
+
+        - name: srccountry
+          type: keyword
+          description: >
+
+        - name: status
+          type: keyword
+          description: >
+
+        - name: style
+          type: keyword
+          description: >
+
+        - name: sub_type
+          type: keyword
+          description: >
+
+        - name: subtype
+          type: keyword
+          description: >
+
+        - name: threat_level
+          type: keyword
+          description: >
+
+        - name: threat_weight
+          type: keyword
+          description: >
+
+        - name: time
+          type: keyword
+          description: >
+
+        - name: timezone
+          type: keyword
+          description: >
+
+        - name: timezone_dayst
+          type: keyword
+          description: >
+
+        - name: type
+          type: keyword
+          description: >
+
+        - name: ui
+          type: keyword
+          description: >
+
+        - name: user
+          type: keyword
+          description: >
+
+        - name: user_name
+          type: keyword
+          description: >
+
+        - name: vd

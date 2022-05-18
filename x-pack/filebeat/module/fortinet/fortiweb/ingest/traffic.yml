@@ -1,0 +1,44 @@
+description: Pipeline for parsing fortiweb logs (traffic pipeline)
+processors:
+- set:
+    field: event.kind
+    value: event
+- set:
+    field: event.action
+    value: request
+    ignore_empty_value: true
+- rename:
+    field: fortinet.fortiweb.status
+    target_field: event.outcome
+    ignore_missing: true
+
+
+
+- append:
+    field: event.type
+    value: error
+    allow_duplicates: false
+    if: "ctx.http?.response?.status_code > 299"
+- append:
+    field: event.type
+    value: allowed
+    allow_duplicates: false
+    if: "ctx.http?.response?.status_code < 299"
+- append:
+    field: event.category
+    value: web
+    allow_duplicates: false
+- append:
+    field: event.type
+    value: access
+    allow_duplicates: false
+- append:
+    field: event.type
+    value: info
+    allow_duplicates: false
+
+
+on_failure:
+- set:
+    field: error.message
+    value: '{{ _ingest.on_failure_message }}'

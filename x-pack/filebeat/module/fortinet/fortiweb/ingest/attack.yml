@@ -1,0 +1,51 @@
+description: Pipeline for parsing fortiweb logs (attack pipeline)
+processors:
+- set:
+    field: event.kind
+    value: alert
+- set:
+    field: event.action
+    value: alert
+- set:
+    field: event.action
+    value: blocked
+    if: ctx.fortinet?.fortiweb?.action == "Alert_Deny"
+- set:
+    field: event.outcome
+    value: success
+- append:
+    field: event.type
+    value: allowed
+    allow_duplicates: false
+    if: ctx.fortinet?.fortiweb?.action == "Alert"
+- append:
+    field: event.type
+    value: denied
+    allow_duplicates: false
+    if: ctx.fortinet?.fortiweb?.action == "Alert_Deny"
+- append:
+    field: event.category
+    value: web
+    allow_duplicates: false
+
+- rename:
+    field: fortinet.fortiweb.main_type
+    target_field: rule.ruleset
+    ignore_missing: true
+- rename:
+    field: fortinet.fortiweb.signature_id
+    target_field: rule.id
+    ignore_missing: true
+- rename:
+    field: fortinet.fortiweb.sub_type
+    target_field: rule.category
+    ignore_missing: true
+- rename:
+    field: fortinet.fortiweb.signature_subclass
+    target_field: rule.name
+    ignore_missing: true
+
+on_failure:
+- set:
+    field: error.message
+    value: '{{ _ingest.on_failure_message }}'

@@ -1,0 +1,69 @@
+description: Pipeline for parsing fortiweb logs (event pipeline)
+processors:
+- set:
+    field: event.kind
+    value: event
+- rename:
+    field: fortinet.fortiweb.action
+    target_field: event.action
+    ignore_missing: true
+- rename:
+    field: fortinet.fortiweb.status
+    target_field: event.outcome
+    ignore_missing: true
+- append:
+    field: event.type
+    value:
+    - user
+    allow_duplicates: false
+    if: ctx.fortinet?.fortiweb?.action == "login"
+
+- append:
+    field: event.type
+    value: info
+    allow_duplicates: false
+    if: "ctx.fortinet?.fortiweb?.action == 'update'"
+- append:
+    field: event.category
+    value:
+    - host
+    - malware
+    allow_duplicates: false
+    if: "ctx.fortinet?.fortiweb?.action == 'update'"
+- append:
+    field: event.category
+    value: authentication
+    allow_duplicates: false
+    if: "ctx.fortinet?.firewall?.action == 'login'"
+
+- grok:
+    field: fortinet.fortiweb.user
+    patterns:
+        - '%{USER:user.name}\(%{WORD:user.roles}\)'
+    ignore_missing: true
+    ignore_failure: true
+- grok:
+    field: message
+    patterns:
+        - '%{IP:source.address}'
+    ignore_missing: true
+    ignore_failure: true
+    if: "ctx.fortinet?.firewall?.action == 'login'"
+- convert:
+    field: source.address
+    target_field: source.ip
+    ignore_missing: true
+    type: ip
+    ignore_failure: true
+    if: "ctx.fortinet?.firewall?.action == 'login'"
+
+
+
+
+
+
+
+on_failure:
+- set:
+    field: error.message
+    value: '{{ _ingest.on_failure_message }}'
