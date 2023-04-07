@@ -40,12 +40,13 @@ processors:
     field: fortinet.fortiweb.user
     patterns:
         - '%{USER:user.name}\(%{WORD:user.roles}\)'
+        - '%{USER:user.name}'
     ignore_missing: true
     ignore_failure: true
 - grok:
     field: message
     patterns:
-        - '%{IP:source.address}'
+        - '.*%{IP:source.address}.*'
     ignore_missing: true
     ignore_failure: true
     if: "ctx.fortinet?.firewall?.action == 'login'"
@@ -56,12 +57,6 @@ processors:
     type: ip
     ignore_failure: true
     if: "ctx.fortinet?.firewall?.action == 'login'"
-
-
-
-
-
-
 
 on_failure:
 - set:

@@ -382,6 +382,8 @@ processors:
       - fortinet.fortiweb.hostname
       - fortinet.fortiweb.time
       - fortinet.fortiweb.tz
+      - fortinet.fortiweb.timezone
+      - fortinet.fortiweb.timezone_dayst
       - fortinet.fortiweb.url
       - fortinet.fortiweb.src
       - fortinet.fortiweb.src_port
